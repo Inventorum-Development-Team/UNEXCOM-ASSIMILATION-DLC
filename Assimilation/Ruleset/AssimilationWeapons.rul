@@ -11,8 +11,8 @@ items:
 #	additional ammo types are to be added 
 #	assimilation's damage depends on the weapon used NOT the ammo used. Ammo only affects the type of damage.
   - &STR_CORE_BLUE
-	type: STR_CORE_BLUE
-	power: 0
+    type: STR_CORE_BLUE
+    power: 0
     battleType: 2
 #clips
   - type: STR_POWER_CORE_BLUE
@@ -21,9 +21,9 @@ items:
     size: 0.1
     costSell: 1000
     weight: 3
-    bigSprite: 4000
-    floorSprite: 4000
-    handSprite: 4000
+    bigSprite: 3000
+    floorSprite: 3000
+    handSprite: 3000
     power: 50
     damageType: 5
     hitSound: 22
@@ -33,7 +33,7 @@ items:
     invWidth: 1
     battleType: 2
     armor: 250
-    listOrder: 4000
+    listOrder: 3000
 
 #Light weapons
 
@@ -44,9 +44,9 @@ items:
     costSell: 1500
     recoveryPoints: 15
     weight: 9
-    bigSprite: 4005
-    floorSprite: 4005
-    handSprite: 4005 
+    bigSprite: 3005
+    floorSprite: 3005
+    handSprite: 3005 
     bulletSprite: 6
     fireSound: 2
     bulletSpeed: 35
@@ -86,20 +86,20 @@ items:
     aimRange: 20
     dropoff: 10
     attraction: 11
-    listOrder: 4001
+    listOrder: 3001
 
 #Heavy weapons
 
 extraSprites:
   - type: BIGOBS.PCK
     files:
-      4000: Resources/ParticleWeapons/BigAsimCoreBlue.png
-      4005: Resources/ParticleWeapons/BigAsimSMG.png
+      3000: Resources/ParticleWeapons/BigAsimCoreBlue.png
+      3005: Resources/ParticleWeapons/BigAsimSMGunloaded.png
       
   - type: FLOOROB.PCK
     files:
-      4000: Resources/ParticleWeapons/FloorAsimCoreBlue.png
-      4005: Resources/ParticleWeapons/FloorAsimSMG.png
+      3000: Resources/ParticleWeapons/FloorAsimCoreBlue.png
+      3005: Resources/ParticleWeapons/FloorAsimSMG.png
     
   - type: HANDOB.PCK
     width: 256
@@ -107,8 +107,8 @@ extraSprites:
     subX: 32
     subY: 40
     files:
-      4000: Resources/ParticleWeapons/HandAsimCoreBlue.png
-      4005: Resources/ParticleWeapons/HandAsimSMG.png
+      3000: Resources/ParticleWeapons/HandAsimCoreBlue.png
+      3005: Resources/ParticleWeapons/HandAsimSMG.png
       
 extraStrings:
   - type: en-US
