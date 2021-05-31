@@ -1,0 +1,120 @@
+items:
+#####################################
+####### Assimilation Weaponry #######
+#####################################
+# Guidelines:
+# To be added
+###################################################
+
+#AMMO
+#notes: 
+#	additional ammo types are to be added 
+#	assimilation's damage depends on the weapon used NOT the ammo used. Ammo only affects the type of damage.
+  - &STR_CORE_BLUE
+	type: STR_CORE_BLUE
+	power: 0
+    battleType: 2
+#clips
+  - type: STR_POWER_CORE_BLUE
+    refNode: *STR_CORE_BLUE
+    #categories: [STR_FIREARMS, STR_CLIPS]
+    size: 0.1
+    costSell: 1000
+    weight: 3
+    bigSprite: 4000
+    floorSprite: 4000
+    handSprite: 4000
+    power: 50
+    damageType: 5
+    hitSound: 22
+    hitAnimation: 26
+    clipSize: 100
+    invHeight: 1
+    invWidth: 1
+    battleType: 2
+    armor: 250
+    listOrder: 4000
+
+#Light weapons
+
+  - type: STR_PARTICLE_SMG
+    #categories: [STR_FIREARMS, STR_SMGS]
+    #requires: TBA
+    size: 0.2
+    costSell: 1500
+    recoveryPoints: 15
+    weight: 9
+    bigSprite: 4005
+    floorSprite: 4005
+    handSprite: 4005 
+    bulletSprite: 6
+    fireSound: 2
+    bulletSpeed: 35
+    reloadSound: 2
+    ammo:
+      0: 
+        tuLoad: 10
+        tuUnload: 20
+        compatibleAmmo: [ STR_POWER_CORE_BLUE ]
+    confAuto:
+      shots: 7
+      #name: STR_FULL_AUTO
+      ammoSlot: 0
+      arcing: false 
+    confAimed:
+      shots: 10
+      #name: STR_PRAY_N_SPRAY
+      ammoSlot: 0
+      arcing: false
+    accuracyCloseQuarters: 125
+    accuracyAuto: 45
+    accuracySnap: 56
+    accuracyAimed: 65
+    tuAuto: 40
+    tuSnap: 23
+    tuAimed: 35
+    sprayWaypoints: 3 
+    costThrow:
+      energy: 20
+    battleType: 1
+    twoHanded: false
+    oneHandedPenalty: 75
+    invWidth: 1
+    invHeight: 2
+    armor: 250
+    autoRange: 11
+    aimRange: 20
+    dropoff: 10
+    attraction: 11
+    listOrder: 4001
+
+#Heavy weapons
+
+extraSprites:
+  - type: BIGOBS.PCK
+    files:
+      4000: Resources/ParticleWeapons/BigAsimCoreBlue.png
+      4005: Resources/ParticleWeapons/BigAsimSMG.png
+      
+  - type: FLOOROB.PCK
+    files:
+      4000: Resources/ParticleWeapons/FloorAsimCoreBlue.png
+      4005: Resources/ParticleWeapons/FloorAsimSMG.png
+    
+  - type: HANDOB.PCK
+    width: 256
+    height: 40
+    subX: 32
+    subY: 40
+    files:
+      4000: Resources/ParticleWeapons/HandAsimCoreBlue.png
+      4005: Resources/ParticleWeapons/HandAsimSMG.png
+      
+extraStrings:
+  - type: en-US
+    strings:
+###################
+##### AMMO ########
+###################
+      STR_POWER_CORE_BLUE: "Power Core Blue"
+      STR_PARTICLE_SMG: "Particle SMG"
