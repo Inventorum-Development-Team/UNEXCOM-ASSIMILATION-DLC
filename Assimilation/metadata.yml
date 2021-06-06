@@ -5,4 +5,4 @@ description: "description"
 id: Assimilation
 master: xcom1
 reservedSpace: 4
-requiredExtendedVersion: "6.7.2"
+requiredExtendedVersion: "7.0"
