@@ -28,12 +28,34 @@ items:
     damageType: 5
     hitSound: 22
     hitAnimation: 26
-    clipSize: 100
+    clipSize: 300
     invHeight: 1
     invWidth: 1
     battleType: 2
     armor: 250
     listOrder: 3010
+
+  - type: STR_THIS_ITEM_IS_NECECARY_FOR_THE_SCRIPT_TO_WORK_DONT_DELETE
+    #categories: [] <-- Don'add these
+    size: 0.1
+    costSell: 1000
+    weight: 3
+    bigSprite: 3000
+    floorSprite: 3000
+    handSprite: 3000
+    power: 20
+    damageType: 5
+    hitSound: 22
+    hitAnimation: 26
+    clipSize: 4
+    shotgunBehavior: 1
+    shotgunPellets: 8
+    shotgunSpread: 50
+    invHeight: 1
+    invWidth: 1
+    battleType: 2
+    armor: 250
+    listOrder: 3011
 
 #Light weapons
 
@@ -110,19 +132,19 @@ items:
         compatibleAmmo: [ STR_POWER_CORE_BLUE ]
     confSnap:
       shots: 2
-      spendPerShot: 5
+      spendPerShot: 15
       #name: STR_DOUBLE_TAP
       ammoSlot: 0
       arcing: false
     confAuto:
       shots: 10
-      spendPerShot: 5
+      spendPerShot: 15
       #name: STR_FULL_AUTO
       ammoSlot: 0
       arcing: false
     confAimed:
       shots: 1
-      spendPerShot: 25
+      spendPerShot: 75
       #name: STR_BIG_SHOT 3x pow
       ammoSlot: 0
       arcing: false
@@ -148,18 +170,105 @@ items:
     listOrder: 3002
 #Heavy weapons
 
+  - type: STR_PARTICLE_SHOTGUN
+    #categories: [STR_FIREARMS, STR_SHOTGUNS]
+    #requires:TBA
+    size: 0.2
+    costSell: 2900
+    weight: 12
+    bigSprite: 3007
+    floorSprite: 3007
+    handSprite: 3024
+    bulletSprite: 6
+    fireSound: 2
+    hitSound: 22
+    hitAnimation: 26
+    bulletSpeed: 35
+    reloadSound: 2
+    ammo:
+      1: 
+        compatibleAmmo: [ STR_POWER_CORE_BLUE ]
+    clipSize: 5
+    shotgunBehavior: 1
+    shotgunPellets: 8
+    shotgunSpread: 50
+    power: 20
+    damageType: 5
+    fuseType: 2
+    primeActionName: STR_PRIME_SHOTGUN
+    primeActionMessage: STR_PRIME_SHOTGUN_MESSAGE
+    scripts: #script from VIGILO CONFINDO MOD note: need to add credits
+      newTurnItem: |
+        var int temp;
+        var ptre BattleItem index;
+        item.getFuseTimer temp;
+        if gt temp 0;
+          item.setFuseTimer -1;
+          item.setFuseEnabled 0;
+          item.setAmmoQuantity 7;
+          BattleItem.getAmmoForSlot item index 1;
+          index.getAmmoQuantity temp;
+          if lt temp 25;
+            set temp 0;
+          else;
+            sub temp 25;
+          end;
+          index.setAmmoQuantity temp;
+          debug_log index;
+        end;
+        return;
+    confSnap:
+      shots: 1
+      spendPerShot: 2
+      #name: STR_DOUBLE_TAP
+      ammoSlot: 0
+      arcing: false
+    confAuto:
+      shots: 10
+      spendPerShot: 15
+      #name: STR_FULL_AUTO
+      ammoSlot: 1
+      arcing: false
+    confAimed:
+      shots: 1
+      spendPerShot: 75
+      #name: STR_BIG_SHOT 3x pow
+      ammoSlot: 1
+      arcing: false
+    tags:
+      ASIM_WEAPON_POWER: 15
+    accuracyCloseQuarters: 120
+    accuracySnap: 70
+    accuracyAimed: 110
+    accuracyAuto: 65
+    tuAuto: 45
+    tuSnap: 29
+    tuAimed: 55
+    battleType: 1
+    twoHanded: true
+    oneHandedPenalty: 40
+    invWidth: 1
+    invHeight: 3
+    autoRange: 11
+    aimRange: 15
+    dropoff: 3
+    attraction: 15
+    listOrder: 3003
+
 extraSprites:
   - type: BIGOBS.PCK
     files:
       3000: Resources/ParticleWeapons/BigAsimCoreBlue.png
       3005: Resources/ParticleWeapons/BigAsimSMGunloaded.png
       3006: Resources/ParticleWeapons/BigAsimCarbineUnloaded.png
+      3007: Resources/ParticleWeapons/BigAsimShotgunUnloaded.png
       
   - type: FLOOROB.PCK
     files:
       3000: Resources/ParticleWeapons/FloorAsimCoreBlue.png
       3005: Resources/ParticleWeapons/FloorAsimSMG.png
       3006: Resources/ParticleWeapons/FloorAsimCarbine.png
+      3007: Resources/ParticleWeapons/FloorAsimShotgun.png
     
   - type: HANDOB.PCK
     width: 256
@@ -170,6 +279,7 @@ extraSprites:
       3000: Resources/ParticleWeapons/HandAsimCoreBlue.png
       3008: Resources/ParticleWeapons/HandAsimSMG.png
       3016: Resources/ParticleWeapons/HandAsimCarbine.png
+      3024: Resources/ParticleWeapons/HandAsimShotgun.png
       
 extraStrings:
   - type: en-US
@@ -180,7 +290,9 @@ extraStrings:
       STR_POWER_CORE_BLUE: "Power Core Blue"
       STR_PARTICLE_SMG: "Particle SMG"
       STR_PARTICLE_CARBINE: "Particle Carbine"
-
+      STR_PARTICLE_SHOTGUN: "Particle Snipe-Shot"
+      STR_PRIME_SHOTGUN: "Prime shotgun"
+      STR_PRIME_SHOTGUN_MESSAGE: "Shotgun charging"
 extended:
   tags:
     RuleItem:
@@ -193,15 +305,15 @@ extended:
         code: |
           var int temp;
           var int combined;
-          debug_log "testing";
+          #debug_log "testing";
           weapon_item.getTag combined Tag.ASIM_WEAPON_POWER;
           if eq battle_action battle_action_aimshoot;
             weapon_item.getTag temp Tag.ASIM_WEAPON_BIG_SHOT;
             if neq temp 0;
-              debug_log "bigshot";
+              #debug_log "bigshot";
               mul combined temp;
             end;
           end;
           mul power combined;
-          debug_log combined;
+          #debug_log combined;
           return power part side;
